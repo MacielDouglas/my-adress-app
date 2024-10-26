@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 
 const client = new ApolloClient({
-  uri: "/graphql",
+  uri: "https://minha-api-nine.vercel.app/graphql",
   cache: new InMemoryCache(),
 });
 

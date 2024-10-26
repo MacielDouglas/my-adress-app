@@ -8,7 +8,7 @@ export default defineConfig({
       "/graphql": {
         target: "https://minha-api-nine.vercel.app",
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },
