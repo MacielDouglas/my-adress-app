@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { clearUser } from "../store/userSlice";
+import { clearUser } from "../../store/userSlice";
 
 const SessionCountdown = () => {
   const dispatch = useDispatch();
