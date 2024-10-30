@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { combineReducers } from "redux";
 import userReducer from "./userSlice";
+import themeReducer from "./themeSlice";
 import expireReducer from "redux-persist-expire";
 
 // Configuração de persistência
@@ -20,6 +21,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+  theme: themeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

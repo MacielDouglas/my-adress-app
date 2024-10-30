@@ -3,21 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setUser } from "../store/userSlice";
 import { LOGIN_USER } from "../graphql/queries/user.query";
-import SessionCountdown from "../components/security/SessionCountdown";
 import { useNavigate } from "react-router-dom";
+import { toggleTheme } from "../store/themeSlice";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 function Login() {
   const user = useSelector((state) => state.user);
+  const theme = useSelector((state) => state.theme.theme);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  // const [theme, setTheme] = useState("dark"); // Estado para armazenar o tema
 
   const [loginUser, { loading, error, data }] = useLazyQuery(LOGIN_USER, {
     onCompleted: (data) => {
       console.log(data.user.user);
       if (data?.user?.success) {
-        dispatch(setUser({ user: data.user.user })); // Executa apenas uma vez
+        dispatch(setUser({ user: data.user.user }));
       } else {
         console.log("Login failed:", data.user.message);
       }
@@ -26,10 +30,17 @@ function Login() {
 
   useEffect(() => {
     if (user.isAuthenticated) {
-      // Verificação adicional para evitar loops
       navigate("/");
     }
   }, [user.isAuthenticated, navigate]);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
   const handleLogin = () => {
     loginUser({ variables: { action: "login", email, password } });
@@ -37,20 +48,31 @@ function Login() {
 
   return (
     <div
-      className="h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url('./ciudad.svg')` }}
+      className="h-screen bg-cover bg-center "
+      style={{ backgroundImage: `url('./ciudad_2.svg')` }}
     >
-      <div className="w-full h-full flex items-center justify-center bg-black bg-opacity-[20%]">
-        <div className="bg-white w-96 rounded-xl flex p-10 justify-center flex-col items-center">
+      <div className="w-full h-full flex items-center justify-center bg-black bg-opacity-[50%]  ">
+        <div
+          className={`w-96 rounded-xl flex p-10 justify-center flex-col items-center shadow-2xl ${
+            theme === "dark" ? "bg-escura_dark text-white" : "bg-clara "
+          }`}
+        >
           <img
             className="h-20 mb-10"
             src="./Icon_page.svg"
             alt="Imagem do ícone da página direcciones."
           />
           <h1 className="text-2xl font-semibold mb-10">
-            Bienvenido a Direcciones
+            Bienvenido a{" "}
+            <span
+              className={`text-bold ${
+                theme === "dark" ? "text-verde" : "text-laranja"
+              }`}
+            >
+              Direcciones
+            </span>
           </h1>
-          <p>
+          <p className="text-text_dark_secundary">
             Para comenzar, debe iniciar sesión con una cuenta de{" "}
             <span className="text-red-500 font-semibold">Google</span>.
           </p>
@@ -71,18 +93,21 @@ function Login() {
           />
           <button
             onClick={handleLogin}
-            className="my-10 bg-red-700 w-full py-4 text-white rounded text-2xl disabled:bg-red-300"
+            className="my-10 bg-red-700 w-full py-4 text-white rounded text-2xl disabled:bg-red-300 hover:bg-red-500"
             disabled={loading}
           >
             {loading ? "Cargando..." : "Iniciar sesión"}
           </button>
+          <button
+            onClick={() => dispatch(toggleTheme())} // Alterna o tema
+          >
+            <p>
+              <span className="text-2xl">Theme:</span>
+              {theme === "light" ? <FaSun /> : <FaMoon />}
+            </p>
+          </button>
         </div>
       </div>
-      {/* <SessionCountdown />
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error.message}</p>}
-      {data && <p>{data.user.message}</p>}
-      {user && <p>{user.name}</p>} */}
     </div>
   );
 }

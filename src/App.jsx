@@ -3,11 +3,17 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/security/PrivateRoute";
 import Header from "./components/Header";
+import { useSelector } from "react-redux";
 
 function App() {
+  const user = useSelector((state) => state.user);
+  console.log(user);
+  if (user.userData) {
+    console.log(user);
+  }
   return (
     <BrowserRouter>
-      <Header />
+      {user.userData && <Header />}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
