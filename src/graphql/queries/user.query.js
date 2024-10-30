@@ -21,6 +21,15 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const LOGOUT = gql`
+  query Logout($action: String!) {
+    user(action: $action) {
+      message
+      success
+    }
+  }
+`;
+
 // export const GET_USER = gql`
 //   query getUser($getUserId: ID!) {
 //     getUser(id: $getUserId) {

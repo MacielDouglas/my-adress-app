@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { clearUser } from "../../store/userSlice";
+import { FaClock } from "react-icons/fa6";
 
 const SessionCountdown = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,12 @@ const SessionCountdown = () => {
   return (
     <div>
       {timeRemaining > 0 ? (
-        <p>Tempo restante: {formatTime(timeRemaining)}</p>
+        <p className="flex gap-3 items-center text-xl">
+          <FaClock />{" "}
+          <span className={`${timeRemaining < 600000 && "text-laranja"}`}>
+            {formatTime(timeRemaining)}
+          </span>
+        </p>
       ) : (
         <p>Sessão expirada</p>
       )}

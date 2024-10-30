@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import PrivateRoute from "./components/security/PrivateRoute";
 import Header from "./components/Header";
 import { useSelector } from "react-redux";
+import Footer from "./components/Footer";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -12,7 +13,7 @@ function App() {
     console.log(user);
   }
   return (
-    <BrowserRouter>
+    <BrowserRouter className="pt-16 pb-16">
       {user.userData && <Header />}
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Route>
       </Routes>
+      {user.userData && <Footer />}
     </BrowserRouter>
   );
 }

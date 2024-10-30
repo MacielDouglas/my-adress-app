@@ -6,6 +6,7 @@ import { LOGIN_USER } from "../graphql/queries/user.query";
 import { useNavigate } from "react-router-dom";
 import { toggleTheme } from "../store/themeSlice";
 import { FaSun, FaMoon } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 function Login() {
   const user = useSelector((state) => state.user);
@@ -15,16 +16,20 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [theme, setTheme] = useState("dark"); // Estado para armazenar o tema
 
   const [loginUser, { loading, error, data }] = useLazyQuery(LOGIN_USER, {
     onCompleted: (data) => {
       console.log(data.user.user);
       if (data?.user?.success) {
         dispatch(setUser({ user: data.user.user }));
+        toast.success("¡Inicio de sesión exitoso!");
       } else {
-        console.log("Login failed:", data.user.message);
+        console.log("error de inicio de sesion:", data.user.message);
+        toast.error(`Error de inicio de sesion: ${data.user.message}`);
       }
+    },
+    onError: (error) => {
+      toast.error(`Error en la solicitud de ingreso: ${error.message}`);
     },
   });
 
@@ -64,13 +69,7 @@ function Login() {
           />
           <h1 className="text-2xl font-semibold mb-10">
             Bienvenido a{" "}
-            <span
-              className={`text-bold ${
-                theme === "dark" ? "text-verde" : "text-laranja"
-              }`}
-            >
-              Direcciones
-            </span>
+            <span className="text-bold text-laranja">Direcciones</span>
           </h1>
           <p className="text-text_dark_secundary">
             Para comenzar, debe iniciar sesión con una cuenta de{" "}
