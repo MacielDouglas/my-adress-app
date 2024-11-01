@@ -8,13 +8,14 @@ import { persistor, store } from "./store/index.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// uri: "http://localhost:8000/graphql",
 const client = new ApolloClient({
   uri: "https://minha-api-nine.vercel.app/graphql",
   cache: new InMemoryCache(),
 });
 
 export default client;
-
+document.cookie = "cookieName=value; SameSite=Lax";
 createRoot(document.getElementById("root")).render(
   <ApolloProvider client={client}>
     <ToastContainer />

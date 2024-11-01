@@ -30,6 +30,19 @@ export const LOGOUT = gql`
   }
 `;
 
+export const FIRE = gql`
+  query Fire {
+    firebaseConfig {
+      apiKey
+      appId
+      authDomain
+      messagingSenderId
+      projectId
+      storageBucket
+    }
+  }
+`;
+
 // export const GET_USER = gql`
 //   query getUser($getUserId: ID!) {
 //     getUser(id: $getUserId) {
