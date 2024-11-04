@@ -91,15 +91,17 @@ function Header() {
             >
               <TiTimesOutline />
             </button>
-            <ul className="flex flex-col space-y-4 mb-5">
-              {menu.map((item) => (
-                <li key={item} onClick={handleMenuClose}>
-                  <Link to={`/${item.toLowerCase()}`} className="text-xl">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {user.userData.group !== "0" && (
+              <ul className="flex flex-col space-y-4 mb-5">
+                {menu.map((item) => (
+                  <li key={item} onClick={handleMenuClose}>
+                    <Link to={`/${item.toLowerCase()}`} className="text-xl">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
             <button
               className="text-2xl text-laranja flex gap-2 items-center mb-5"
               onClick={handleLogout}

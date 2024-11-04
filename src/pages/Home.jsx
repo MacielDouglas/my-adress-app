@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 export default function Home() {
   const user = useSelector((state) => state.user);
   const theme = useSelector((state) => state.theme.theme);
+  console.log();
 
   const { name, group, id, isAdmin, isSS, profilePicture } = user.userData;
 
@@ -13,8 +14,9 @@ export default function Home() {
       }`}
     >
       <h1>
-        Bienvenido, <span className="text-laranja">{name}</span>.
+        Bienvenido, <span className="text-laranja">{name.slice(0, -5)}</span>.
       </h1>
+      {group === "0" ? <div>eita</div> : <div>éeée</div>}
     </div>
   );
 }

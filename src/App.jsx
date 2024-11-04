@@ -5,6 +5,8 @@ import PrivateRoute from "./components/security/PrivateRoute";
 import Header from "./components/Header";
 import { useSelector } from "react-redux";
 import Footer from "./components/Footer";
+import PrivateRouteGroupOnly from "./components/security/PrivateRouteGroupOnly";
+import InitialPage from "./components/security/InitialPage";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -15,10 +17,13 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/initialPage" element={<InitialPage />} />
+          <Route element={<PrivateRouteGroupOnly />}>
+            <Route path="/" element={<Home />} />
+          </Route>
         </Route>
       </Routes>
-      {user.userData && <Footer />}
+      {user.userData && user.userData.group !== "0" && <Footer />}
     </BrowserRouter>
   );
 }
