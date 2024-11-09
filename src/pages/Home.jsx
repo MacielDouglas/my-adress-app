@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import menuOptions from "../constants/menuOptions";
+import { BsArrowUpRightSquareFill } from "react-icons/bs";
 
 export default function Home() {
   const user = useSelector((state) => state.user);
@@ -10,29 +11,34 @@ export default function Home() {
     user.userData;
 
   return (
-    <div className="w-full h-full pt-28 bg-Background">
-      <div className="p-10 flex gap-5 items-center  justify-center">
+    <div className="w-full h-full bg-Background pb-32 text-primary">
+      <div className="p-6 flex gap-4 items-center justify-center">
         <img
           src={profilePicture}
-          className="w-10 h-10 rounded-full"
+          className="w-12 h-12 rounded-full shadow-sm"
           alt="imagen del usuario."
         />
-        <h1 className="text-2xl font-semibold font-marcellus">
+        <h1 className="text-2xl font-semibold font-marcellus text-gray-800">
           Bienvenido, <span className="font-bold">{name.slice(0, -5)}</span>.
         </h1>
       </div>
-      <div className="flex flex-col items-center gap-5 px-5">
-        <p>Para comenzar, elija una de las siguinetes opciones: </p>
-        <div className="flex flex-col gap-2 ">
+
+      <div className="flex flex-col items-center gap-6 px-4">
+        <p className="text-gray-600 text-center">
+          Para comenzar, elija una de las siguientes opciones:
+        </p>
+
+        <div className="flex flex-col gap-4 w-full max-w-md">
           {Object.entries(menuOptions).map(([key, item]) => (
             <Link
               to={item.path}
               key={key}
-              className="bg-secondary p-5 rounded-md h-40 flex flex-col justify-center"
+              className="bg-secondary p-4 rounded-lg shadow-sm h-24 flex flex-col justify-center hover:shadow-md transition-shadow"
             >
-              <p className="">{item.info}</p>
-              <div className="flex items-center justify-between ">
-                <p className="font-marcellus text-3xl">{item.label}</p>
+              <p className="text-gray-500 text-sm mb-1">{item.info}</p>
+              <div className="flex items-center justify-between text-2xl">
+                <p className="font-marcellus text-gray-800">{item.label}</p>
+                <BsArrowUpRightSquareFill className="text-gray-600" />
               </div>
             </Link>
           ))}

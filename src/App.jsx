@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import Footer from "./components/Footer";
 import PrivateRouteGroupOnly from "./components/security/PrivateRouteGroupOnly";
 import InitialPage from "./components/security/InitialPage";
+import Address from "./pages/Address";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/initialPage" element={<InitialPage />} />
           <Route element={<PrivateRouteGroupOnly />}>
             <Route path="/" element={<Home />} />
+            <Route path="/address" element={<Address />} />
           </Route>
         </Route>
       </Routes>

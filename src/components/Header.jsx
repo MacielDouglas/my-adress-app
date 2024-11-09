@@ -56,12 +56,7 @@ function Header() {
   }, [logoutUser]);
 
   return (
-    // <header className="fixed top-0 left-0 w-full flex items-center justify-between bg-gradient-to-b from-stone-50 to-stone-100 p-4">
-    <header
-      className={` bg-primary text-white fixed top-0 left-0 w-full flex items-center justify-between p-4 ${
-        theme === "dark" ? "bg-escura_dark text-white" : "bg-color_01"
-      }`}
-    >
+    <header className="bg-primary text-white  w-full flex items-center justify-between p-1">
       {user.userData.group === "0" ? (
         <div className="flex items-center justify-between w-full p-2 text-2xl ">
           <img

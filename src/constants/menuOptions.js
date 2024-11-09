@@ -7,7 +7,7 @@ const menuOptions = {
   },
   direcciones: {
     label: "Direcciones",
-    path: "/addresses",
+    path: "/address",
     info: "Puede enviar una nueva dirreción o corfirmar si ya existe esta dirección.",
     icon: "FaRoute",
   },
