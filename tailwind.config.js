@@ -4,17 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        clara: "#EEF0F2",
-        escura_light: "#1c2129",
-        // escura_dark: "#363636",
-        escura_dark: "#00131c",
-        verde: "#cfff92",
-        // laranja: "#FF3500",
-        laranja: "#F78001",
-        // text_dark_secundary: "#696969",
-        text_dark_secundary: "#727d84",
+        primary: "#0F282F",
+        secondary: "#F2ECEC",
+        Background: "#F7F6F2",
+        error: "#BD3c3c",
+      },
+      fontFamily: {
+        Figtree: ["Figtree", "sans-serif"],
       },
     },
   },
   plugins: [],
-};
+}

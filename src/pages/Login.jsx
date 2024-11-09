@@ -91,22 +91,19 @@ function Login() {
       className="h-screen bg-cover bg-center "
       style={{ backgroundImage: `url('./ciudad_2.svg')` }}
     >
-      <div className="w-full h-full flex items-center justify-center bg-black bg-opacity-[50%]  ">
-        <div
-          className={`w-96 rounded-xl flex p-10 justify-center flex-col items-center shadow-2xl ${
-            theme === "dark" ? "bg-escura_dark text-white" : "bg-clara "
-          }`}
-        >
+      <div className="w-full h-full flex items-center justify-center bg-stone-950 bg-opacity-[50%]">
+        <div className="bg-primary min-h-[500px] min-w-80 mx-5 rounded-xl flex p-10 justify-center flex-col gap-5  shadow-2xl text-lg text-secondary">
           <img
-            className="h-20 mb-10"
-            src="./Icon_page.svg"
+            className=""
+            src="./direccion_logo.svg"
             alt="Imagem do ícone da página direcciones."
           />
-          <h1 className="text-2xl font-semibold mb-10">
+          <h1 className="text-4xl font-bold">
             Bienvenido a{" "}
             <span className="text-bold text-laranja">Direcciones</span>
           </h1>
-          <p className="text-text_dark_secundary">
+          <p></p>
+          <p className="text-wrap text-stone-500">
             Para comenzar, debe iniciar sesión con una cuenta de{" "}
             <span className="text-red-500 font-semibold">Google</span>.
           </p>
@@ -127,18 +124,10 @@ function Login() {
           /> */}
           <button
             onClick={handleLoginGoogle}
-            className="my-10 bg-red-700 w-full py-2 text-white rounded text-xl disabled:bg-red-300 hover:bg-red-500"
+            className="my-10 bg-red-700 w-full py-2 text-white rounded disabled:bg-red-300 hover:bg-red-500"
             disabled={loading || load}
           >
-            {loading || load ? "Cargando..." : "Usa tu Cuenta de Google"}
-          </button>
-          {/* <button onClick={handleLoginGoogle}>Login com google</button> */}
-          <button
-            onClick={() => dispatch(toggleTheme())}
-            className="flex  gap-2 items-center text-xl"
-          >
-            Apariencia:
-            {theme === "light" ? <FaSun /> : <FaMoon />}
+            {loading || load ? "Cargando..." : "Usa tu cuenta de Google"}
           </button>
         </div>
       </div>
